@@ -1,0 +1,7 @@
+include ':app'
+
+def flutterSdkPath = System.getenv("FLUTTER_ROOT")
+if (flutterSdkPath == null || flutterSdkPath.isEmpty()) {
+    throw new GradleException("FLUTTER_ROOT is not set. Codemagic will set it automatically.")
+}
+apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
