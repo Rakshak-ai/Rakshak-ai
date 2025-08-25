@@ -1,0 +1,6 @@
+package com.rakshak_ai.rakshak_ai
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
