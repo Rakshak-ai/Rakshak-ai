@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+// Flutter gradle
+def flutterRoot = System.getenv("FLUTTER_ROOT")
+if (flutterRoot == null || flutterRoot.isEmpty()) {
+    throw new GradleException("FLUTTER_ROOT is not set. Codemagic will set it automatically.")
+}
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    compileSdkVersion 34
+    namespace "com.rakshakai.rakshakai"
+
+    defaultConfig {
+        applicationId "com.rakshakai.rakshakai"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            // For CI with no signing:
+            signingConfig null
+            minifyEnabled false
+        }
+        debug {
+            signingConfig null
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/*']
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+}
