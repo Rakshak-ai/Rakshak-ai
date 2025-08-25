@@ -1,4 +1,4 @@
-package com.rakshak_ai.rakshak_ai
+package com.rakshak.ai
 
 import io.flutter.embedding.android.FlutterActivity
 
